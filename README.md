@@ -1,15 +1,24 @@
 # inapp_browser
 
-A new flutter plugin project.
+An in-app browser using Webviews in Flutter.
 
-## Getting Started
+## Important:
+This project is still a WIP and new features and improved functionality will be added soon.
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+## Usage
+1. Use URIs for all purposes. Make sure to pass a valid URI as the plugin doesn't verify this on it's own. This functionality will be added in the future versions.
+2. Create your URI in the following way: ```Uri uri = Uri.parse('https://www.google.com')```
+3. Call the ```InappBrowser.showPopUpBrowser()``` method and pass your ```context``` and your ```URI```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## What's working:
+- Forward backward navigation
+- page refresh.
+- URL share functionality
 
+## Known issues:
+- Forward backward navigation is a little buggy for AMP pages
+- URLs with redirects break backward navigation
+
+If there are any open issues, feel free to open an issue on Github.
+For feature requests, open an issue on Github with a feature label.
+If you feel like you can help me with this project, open a PR.
