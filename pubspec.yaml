@@ -1,7 +1,6 @@
 name: inapp_browser
 description: A new flutter plugin project.
-version: 0.0.1
-author: Stefano Alvares
+version: 1.0.0
 homepage: https://github.com/stef0296/inapp_webview
 
 environment:
