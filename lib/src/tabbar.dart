@@ -35,6 +35,7 @@ class _TabbarState extends State<Tabbar> {
     return Container(
       height: 50,
       color: Color(0xFF212121),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -52,6 +53,7 @@ class _TabbarState extends State<Tabbar> {
               ),
             ),
           ),
+          SizedBox(width: 24),
           SizedBox(
             width: 40,
             height: 40,
@@ -68,6 +70,9 @@ class _TabbarState extends State<Tabbar> {
               ),
             ),
           ),
+          Expanded(
+            child: Container(),
+          ),
           SizedBox(
             width: 40,
             height: 40,
@@ -80,15 +85,15 @@ class _TabbarState extends State<Tabbar> {
               ),
             ),
           ),
-          SizedBox(
-            width: 40,
-            height: 40,
-            child: Icon(
-              Icons.more_horiz_outlined,
-              color: Colors.white,
-              size: 38,
-            ),
-          ),
+          // SizedBox(
+          //   width: 40,
+          //   height: 40,
+          //   child: Icon(
+          //     Icons.more_horiz_outlined,
+          //     color: Colors.white,
+          //     size: 38,
+          //   ),
+          // ),
         ],
       ),
     );
