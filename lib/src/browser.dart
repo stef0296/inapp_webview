@@ -12,12 +12,14 @@ class Browser extends StatefulWidget {
   _BrowserState createState() => _BrowserState();
 }
 
-class _BrowserState extends State<Browser> {
+class _BrowserState extends State<Browser> with SingleTickerProviderStateMixin {
   List<Uri> urls = [];
   String title = '';
   bool isSecure = false;
   int currentIndex = 0;
+  double loadingStatus = 0.0;
   WebViewController? _webViewController;
+  late AnimationController animationController;
 
   NavigationDecision navigationDelegate(NavigationRequest request) {
     print('URL: ${request.url}');
@@ -94,7 +96,17 @@ class _BrowserState extends State<Browser> {
   @override
   void initState() {
     super.initState();
+    animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 5),
+    );
     urls.add(widget.url!);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    animationController.dispose();
   }
 
   @override
@@ -118,6 +130,15 @@ class _BrowserState extends State<Browser> {
                 isSecure: isSecure,
                 reloadCallback: reloadPage,
               ),
+              Visibility(
+                visible: animationController.value != 0.0,
+                child: LinearProgressIndicator(
+                  value: animationController.value,
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    Colors.blue,
+                  ),
+                ),
+              ),
               Expanded(
                 child: Container(
                   height: size.height,
@@ -131,6 +152,12 @@ class _BrowserState extends State<Browser> {
                     onPageFinished: (url) async {
                       title = (await _webViewController!.getTitle())!;
                       isSecure = urls[currentIndex].isScheme('https');
+                      setState(() {});
+                    },
+                    onProgress: (int status) {
+                      print('Status $status');
+                      animationController.value = status / 1.0;
+                      if (status == 100) animationController.value = 0.0;
                       setState(() {});
                     },
                   ),
