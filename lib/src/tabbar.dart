@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inapp_browser/src/action_sheet.dart';
 import 'package:share/share.dart';
 
 class Tabbar extends StatefulWidget {
@@ -35,7 +37,7 @@ class _TabbarState extends State<Tabbar> {
     return Container(
       height: 50,
       color: Color(0xFF212121),
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      // padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -53,7 +55,7 @@ class _TabbarState extends State<Tabbar> {
               ),
             ),
           ),
-          SizedBox(width: 24),
+          // SizedBox(width: 24),
           SizedBox(
             width: 40,
             height: 40,
@@ -70,9 +72,9 @@ class _TabbarState extends State<Tabbar> {
               ),
             ),
           ),
-          Expanded(
-            child: Container(),
-          ),
+          // Expanded(
+          //   child: Container(),
+          // ),
           SizedBox(
             width: 40,
             height: 40,
@@ -85,15 +87,36 @@ class _TabbarState extends State<Tabbar> {
               ),
             ),
           ),
-          // SizedBox(
-          //   width: 40,
-          //   height: 40,
-          //   child: Icon(
-          //     Icons.more_horiz_outlined,
-          //     color: Colors.white,
-          //     size: 38,
-          //   ),
-          // ),
+          SizedBox(
+            width: 40,
+            height: 40,
+            child: InkWell(
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (ctx) {
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Copy URL'),
+                        Text('Cancel'),
+                      ],
+                    );
+                  },
+                );
+                // showCupertinoModalPopup(
+                //   context: context,
+                //   builder: (ctx) => BrowserActionSheet(),
+                // );
+              },
+              child: Icon(
+                Icons.more_horiz_outlined,
+                color: Colors.white,
+                size: 38,
+              ),
+            ),
+          ),
         ],
       ),
     );
